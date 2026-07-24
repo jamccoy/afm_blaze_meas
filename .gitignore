@@ -1,0 +1,12 @@
+# Virtual environment
+.venv/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# macOS
+.DS_Store
+
+# Generated analysis output (regenerable; kept on disk, not in git)
+results/
