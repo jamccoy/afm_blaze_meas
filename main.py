@@ -9,7 +9,8 @@ from afm_analysis.workflows import (
     run_single_file_analysis,
     run_multiple_file_analysis,
     run_comparison_analysis,
-    run_boundary_profile_export
+    run_boundary_profile_export,
+    run_icc_report
 )
 
 # Matplotlib setup
@@ -37,10 +38,13 @@ def main():
     elif ANALYSIS_MODE == 'ggp':
         run_boundary_profile_export()
 
+    elif ANALYSIS_MODE == 'icc':
+        run_icc_report()
+
     else:
         print(f"Unknown ANALYSIS_MODE: {ANALYSIS_MODE}")
         print("Please set ANALYSIS_MODE to 'single', 'multiple', 'compare', "
-              "or 'ggp' in config.py")
+              "'ggp', or 'icc' in config.py")
         return
     
     plt.show()
