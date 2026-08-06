@@ -1,55 +1,18 @@
 """
 AFM Blaze Angle Analysis
-Main entry point - run this file to analyze your data
+Run this file to analyze your data, with the mode set in afm_analysis/config.py
+
+Kept at the project root because it is the entry point the README has always
+documented and the one muscle memory reaches for. It delegates to the same
+dispatch as the `afm-analysis` console script, so the two cannot drift.
 """
-import matplotlib.pyplot as plt
+import os
+import sys
 
-from afm_analysis.config import ANALYSIS_MODE
-from afm_analysis.workflows import (
-    run_single_file_analysis,
-    run_multiple_file_analysis,
-    run_comparison_analysis,
-    run_boundary_profile_export,
-    run_icc_report
-)
+# Support running from a checkout without installing the package first.
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src'))
 
-# Matplotlib setup
-plt.close("all")
-plt.ion()
-plt.rcParams.update({
-    "text.usetex": False,
-    "font.family": "sans-serif"
-})
-
-
-def main():
-    """Main execution entry point"""
-    
-    # Route to appropriate workflow based on analysis mode
-    if ANALYSIS_MODE == 'single':
-        run_single_file_analysis()
-        
-    elif ANALYSIS_MODE == 'multiple':
-        run_multiple_file_analysis()
-        
-    elif ANALYSIS_MODE == 'compare':
-        run_comparison_analysis()
-
-    elif ANALYSIS_MODE == 'ggp':
-        run_boundary_profile_export()
-
-    elif ANALYSIS_MODE == 'icc':
-        run_icc_report()
-
-    else:
-        print(f"Unknown ANALYSIS_MODE: {ANALYSIS_MODE}")
-        print("Please set ANALYSIS_MODE to 'single', 'multiple', 'compare', "
-              "'ggp', or 'icc' in config.py")
-        return
-    
-    plt.show()
-    print("\n✓ Analysis complete!")
-
+from afm_analysis.cli import main
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
