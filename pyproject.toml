@@ -54,6 +54,13 @@ Homepage = "https://github.com/jamccoy/afm_blaze_meas"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+# The wiki pages are prose the application displays, so they must travel with an
+# installed copy rather than existing only in a checkout. Without this they are
+# silently absent from a wheel and the Wiki tab is empty for anyone who pip
+# installed rather than cloned.
+[tool.setuptools.package-data]
+"afm_analysis.wiki" = ["*.md"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 qt_api = "pyside6"
