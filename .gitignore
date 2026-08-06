@@ -10,3 +10,8 @@ __pycache__/
 
 # Generated analysis output (regenerable; kept on disk, not in git)
 results/
+
+# Built .app bundle. Not committed: its launcher stub hard-codes an absolute
+# path to this checkout's venv, which is wrong on any other machine. The
+# generator (tools/make_app.py) is committed instead.
+build/
